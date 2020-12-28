@@ -7,6 +7,8 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
       home: HomePage(),
     );
   }
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Card(
-              color: Colors.blue,
+              color: Colors.deepPurpleAccent,
               elevation: 5,
               child: Text('Gráfico'),
             ),
