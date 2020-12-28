@@ -76,16 +76,22 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           transaction.title,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 16,
                             color: Colors.deepOrange,
                           ),
                         ),
-                        Text(transaction.date.toString()),
+                        Text(
+                          transaction.date.toString(),
+                          style: TextStyle(
+                            color: Colors.greenAccent,
+                          ),
+                        ),
                       ],
                     )
                   ],
