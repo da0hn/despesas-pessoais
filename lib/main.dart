@@ -52,7 +52,44 @@ class HomePage extends StatelessWidget {
           Column(
             children: _transactions.map((transaction) {
               return Card(
-                child: Text(transaction.title),
+                child: Row(
+                  children: [
+                    Container(
+                      child: Text(
+                        transaction.value.toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.deepOrange,
+                        ),
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purpleAccent,
+                          width: 2,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(10),
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          transaction.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.deepOrange,
+                          ),
+                        ),
+                        Text(transaction.date.toString()),
+                      ],
+                    )
+                  ],
+                ),
               );
             }).toList(),
           ),
