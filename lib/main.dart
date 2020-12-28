@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Container(
                       child: Text(
-                        'R\$ ${transaction.value.toString()}',
+                        'R\$ ${transaction.value.toStringAsFixed(2)}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                     ),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
                           transaction.title,
