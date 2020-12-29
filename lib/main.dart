@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'models/transaction.dart';
 
@@ -76,7 +77,7 @@ class HomePage extends StatelessWidget {
                       padding: EdgeInsets.all(10),
                     ),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           transaction.title,
@@ -87,7 +88,7 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          transaction.date.toString(),
+                          DateFormat('dd MMM yyyy').format(transaction.date),
                           style: TextStyle(
                             color: Colors.greenAccent,
                           ),
