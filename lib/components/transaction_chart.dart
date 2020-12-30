@@ -41,23 +41,23 @@ class TransactionChart extends StatelessWidget {
 
   List<Map<String, Object>> get _groupedTransactions {
     return List.generate(7, (index) {
-      final weekDay = DateTime.now().subtract(
+      final dayOfWeek = DateTime.now().subtract(
         Duration(days: index),
       );
-      final initialLetter =
-          DateFormat(DateFormat.ABBR_WEEKDAY, 'pt_BR').format(weekDay);
+      final dayOfWeekFormated =
+          DateFormat(DateFormat.ABBR_WEEKDAY, 'pt_BR').format(dayOfWeek);
       double totalInDay = 0.0;
 
       _recentTransactions.forEach((transaction) {
-        final days = weekDay.difference(transaction.date).inDays;
-        final hours = weekDay.difference(transaction.date).inHours;
+        final days = dayOfWeek.difference(transaction.date).inDays;
+        final hours = dayOfWeek.difference(transaction.date).inHours;
         if (days == 0 && (hours >= 0 && hours <= 24)) {
           totalInDay += transaction.value;
         }
       });
 
       return {
-        'day': initialLetter,
+        'day': dayOfWeekFormated,
         'value': totalInDay,
       };
     }).reversed.toList();
