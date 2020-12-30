@@ -19,7 +19,7 @@ class TransactionChart extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: _groupedTransactions.reversed.map((e) {
+          children: _groupedTransactions.map((e) {
             return Flexible(
               fit: FlexFit.tight,
               child: TransactionChartBar(
@@ -62,6 +62,6 @@ class TransactionChart extends StatelessWidget {
         'day': initialLetter,
         'value': totalInDay,
       };
-    });
+    }).reversed.toList();
   }
 }
