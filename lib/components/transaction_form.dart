@@ -9,6 +9,8 @@ class TransactionForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // move o foco entre os TextField
+    final node = FocusScope.of(context);
     return Card(
       elevation: 5,
       child: Padding(
@@ -20,9 +22,14 @@ class TransactionForm extends StatelessWidget {
               decoration: InputDecoration(
                 labelText: 'Título',
               ),
+              onEditingComplete: () => node.nextFocus(),
+              textInputAction: TextInputAction.next,
             ),
             TextField(
               controller: valueController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              textInputAction: TextInputAction.done,
+              onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(
                 labelText: 'Valor (R\$)',
               ),
@@ -31,12 +38,7 @@ class TransactionForm extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FlatButton(
-                  onPressed: () {
-                    final title = titleController.value.text;
-                    final value =
-                        double.tryParse(valueController.value.text) ?? 0.0;
-                    onSubmit(title, value);
-                  },
+                  onPressed: _submitForm,
                   child: Text('Nova Transação'),
                   textColor: Colors.purpleAccent,
                 ),
@@ -46,5 +48,14 @@ class TransactionForm extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _submitForm() {
+    final title = titleController.value.text;
+    final value = double.tryParse(valueController.value.text) ?? 0.0;
+
+    if (title.isEmpty || value <= 0) return;
+
+    onSubmit(title, value);
   }
 }
