@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     Transaction(
       id: 't1',
       title: 'Conta antiga',
-      value: 310.76,
+      value: 251.76,
       date: DateTime.now().subtract(Duration(days: 28)),
     ),
     Transaction(
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   List<Transaction> get _recentTransactions {
     return _transactions
         .where((transaction) =>
-            DateTime.now().difference(transaction.date).inDays < 7)
+            DateTime.now().difference(transaction.date).inDays <= 7)
         .toList();
   }
 
