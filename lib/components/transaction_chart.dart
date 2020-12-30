@@ -46,7 +46,7 @@ class TransactionChart extends StatelessWidget {
       final dayOfWeek = DateTime.now().subtract(
         Duration(days: index),
       );
-      final dayOfWeekFormated =
+      final dayOfWeekFormatted =
           DateFormat(DateFormat.ABBR_WEEKDAY, 'pt_BR').format(dayOfWeek);
       double totalInDay = 0.0;
 
@@ -59,7 +59,7 @@ class TransactionChart extends StatelessWidget {
       });
 
       return {
-        'day': dayOfWeekFormated,
+        'day': dayOfWeekFormatted,
         'value': totalInDay,
       };
     }).reversed.toList();
