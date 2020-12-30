@@ -1,6 +1,5 @@
 import 'package:despesas_pessoais/components/transaction_chart_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
@@ -45,7 +44,6 @@ class TransactionChart extends StatelessWidget {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
       );
-      initializeDateFormatting('pt_BR', null);
       final initialLetter =
           DateFormat(DateFormat.ABBR_WEEKDAY, 'pt_BR').format(weekDay);
       double totalInDay = 0.0;
