@@ -18,13 +18,15 @@ class TransactionChart extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: _groupedTransactions.map((e) {
+          children: _groupedTransactions.map((transactionDTO) {
             return Flexible(
               fit: FlexFit.tight,
               child: TransactionChartBar(
-                percentage: (e['value'] as double) / _weekTotalValue,
-                value: e['value'],
-                label: e['day'],
+                percentage: _weekTotalValue == 0
+                    ? 0.0
+                    : (transactionDTO['value'] as double) / _weekTotalValue,
+                value: transactionDTO['value'],
+                label: transactionDTO['day'],
               ),
             );
           }).toList(),
