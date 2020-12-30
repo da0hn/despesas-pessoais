@@ -25,7 +25,6 @@ class _TransactionFormState extends State<TransactionForm> {
         child: Column(
           children: [
             TextField(
-              autofocus: true,
               controller: titleController,
               decoration: InputDecoration(
                 labelText: 'Título',
