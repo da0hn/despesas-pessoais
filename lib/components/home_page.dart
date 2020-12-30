@@ -15,19 +15,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _transactions = <Transaction>[
     Transaction(
-      id: 't1',
+      id: Random().nextDouble().toString(),
       title: 'Novo tênis de corrida',
       value: 310.76,
       date: DateTime.now().subtract(Duration(days: 3, hours: 31)),
     ),
     Transaction(
-      id: 't1',
+      id: Random().nextDouble().toString(),
       title: 'Conta antiga',
       value: 251.76,
       date: DateTime.now().subtract(Duration(days: 28)),
     ),
     Transaction(
-      id: 't2',
+      id: Random().nextDouble().toString(),
       title: 'Conta de luz',
       value: 211.30,
       date: DateTime.now().subtract(Duration(days: 1, hours: 5)),
@@ -65,9 +65,9 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+          children: [
             TransactionChart(_recentTransactions),
-            TransactionList(this._transactions),
+            TransactionList(this._transactions, _removeTransaction),
           ],
         ),
       ),
@@ -77,6 +77,12 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((transaction) => transaction.id == id);
+    });
   }
 
   _addTransaction(String title, double value, DateTime date) {

@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  final List<Transaction> transactions;
+  final List<Transaction> _transactions;
+  final Function(String) _onRemove;
 
-  TransactionList(this.transactions);
+  TransactionList(this._transactions, this._onRemove);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: transactions.isEmpty
+      child: _transactions.isEmpty
           ? _noTransactionFound(context)
           : _transactionList(context),
     );
@@ -21,9 +23,9 @@ class TransactionList extends StatelessWidget {
 
   Widget _transactionList(BuildContext context) {
     return ListView.builder(
-      itemCount: transactions.length,
+      itemCount: _transactions.length,
       itemBuilder: (_, index) {
-        final transaction = transactions[index];
+        final transaction = _transactions[index];
         return Card(
           elevation: 5,
           margin: EdgeInsets.symmetric(
@@ -54,6 +56,12 @@ class TransactionList extends StatelessWidget {
             ),
             subtitle: Text(
               DateFormat('d MMM y', 'pt_BR').format(transaction.date),
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              color: Colors.red,
+              iconSize: 30,
+              onPressed: () => this._onRemove(transaction.id),
             ),
           ),
         );
