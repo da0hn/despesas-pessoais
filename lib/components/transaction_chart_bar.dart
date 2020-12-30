@@ -15,8 +15,11 @@ class TransactionChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox(
-          child: Text('${this.value.toStringAsFixed(2)}'),
+        Container(
+          height: 20,
+          child: FittedBox(
+            child: Text('${this.value.toStringAsFixed(2)}'),
+          ),
         ),
         SizedBox(height: 5),
         _bar(),
